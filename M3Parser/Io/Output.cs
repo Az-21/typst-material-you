@@ -16,7 +16,7 @@ internal static class Output
     foreach (var theme in themes)
     {
       // Location
-      string typstFilename = theme.Filename + ".typ";
+      string typstFilename = theme.Filename.ToLowerInvariant() + ".typ";
       string path = Path.Combine(OutputFolder, typstFilename);
 
       // Content
