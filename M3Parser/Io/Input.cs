@@ -27,7 +27,7 @@ internal static class Input
   {
     if (files.Length > 0) { return; }
     Console.WriteLine("No `.kt` file found in `Input` folder");
-    Console.WriteLine("Press any key to exit...");
+    Console.Write("Press any key to exit...");
     Console.ReadKey();
     System.Environment.Exit(0);
   }
