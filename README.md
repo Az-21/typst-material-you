@@ -2,7 +2,7 @@
 🎨 Utility to parse material you theme for typst
 
 ## Usage Guide
-### Generate Custom Material You Palette
+### 1. Generate Custom Material You Palette
 - Go to https://m3.material.io/theme-builder#/custom
 - Set color seeds as per your preference (see left hand panel)
 - After previewing colors on the website, export as `.kt` file
@@ -15,18 +15,18 @@
 > [!TIP]
 > You can rename `Color.kt`. Just preserve the `.kt` extension.
 
-### Install .NET 8.0 Runtime
+### 2. Install .NET 8.0 Runtime
 - Go to https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 - Download and install the latest .NET 8.0 **runtime** based on your OS and CPU architecture
 
-### Download Typst Material You
+### 3. Download Typst Material You
 - Download the `.7z` file from https://github.com/Az-21/typst-material-you/releases
 - Extract using [7-zip](https://www.7-zip.org/) or [NanaZip](https://github.com/M2Team/NanaZip/releases)
 - Copy-paste the `Color.kt` file inside the `Input` folder
 - Run `M3Parser.exe`
 - Program will generate a ready-to-import color palette in `Output` folder
 
-### Import in Typst Project
+### 4. Import in Typst Project
 ```typst
 #import "color.typ": m3dark, m3light
 
