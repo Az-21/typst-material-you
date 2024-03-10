@@ -1,26 +1,26 @@
-﻿using ThemePair = (string, string); // (Name, HEX Value)
+﻿using M3Parser.Model;
 
 namespace M3Parser.Parse;
 internal static class Theme
 {
-  internal static List<(string, List<ThemePair>)> FromKotlinFiles(in string[] kotlinFiles)
+  internal static List<M3Theme> FromKotlinFiles(in string[] kotlinFiles)
   {
-    List<(string, List<ThemePair>)> themes = [];
+    List<M3Theme> themes = [];
 
     foreach (string file in kotlinFiles)
     {
       string filename = Path.GetFileNameWithoutExtension(file);
-      List<ThemePair> themePair = Parse.Theme.FromKotlinFile(file);
-      themes.Add((filename, themePair));
+      List<M3ThemePair> themePairs = Parse.Theme.FromKotlinFile(file);
+      themes.Add(new M3Theme(filename, themePairs));
     }
 
     return themes;
   }
 
   private const string KotlinThemePairIdentifier = "val md_theme";
-  private static List<ThemePair> FromKotlinFile(in string kotlinFile)
+  private static List<M3ThemePair> FromKotlinFile(in string kotlinFile)
   {
-    List<(string, string)> colors = [];
+    List<M3ThemePair> colors = [];
 
     foreach (string line in File.ReadLines(kotlinFile))
     {
@@ -37,7 +37,7 @@ internal static class Theme
 
   private const int KotlinThemeStartIndex = 13; // To trim "val md_theme_"
   private const int KotlinColorValueStartIndex = 10; // To trim "Color(0xFF"
-  private static ThemePair ParseKotlinTheme(in string value)
+  private static M3ThemePair ParseKotlinTheme(in string value)
   {
     // Input format => "val md_theme_light_primary = Color(0xFF2C5EA7)"
 
@@ -57,6 +57,6 @@ internal static class Theme
     rhs = rhs.Substring(KotlinColorValueStartIndex, 6); // HEX color is 6 chars
     rhs = "#" + rhs;
 
-    return (lhs, rhs);
+    return new M3ThemePair(lhs, rhs);
   }
 }

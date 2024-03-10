@@ -1,11 +1,11 @@
-﻿using System.Text;
-using ThemePair = (string, string);
+﻿using M3Parser.Model;
+using System.Text;
 
 namespace M3Parser.Io;
 internal static class Output
 {
   private const string OutputFolder = "Output";
-  internal static void WriteThemes(in List<(string, List<ThemePair>)> themes, in string version)
+  internal static void WriteThemes(in List<M3Theme> themes, in string version)
   {
     // Ensure output folder exists
     bool outputExists = Path.Exists(OutputFolder);
@@ -16,11 +16,11 @@ internal static class Output
     foreach (var theme in themes)
     {
       // Location
-      string typstFilename = theme.Item1 + ".typ";
+      string typstFilename = theme.Filename + ".typ";
       string path = Path.Combine(OutputFolder, typstFilename);
 
       // Content
-      string typstThemeVariable = GenerateTypstThemeVariable(theme, version);
+      string typstThemeVariable = GenerateTypstThemeVariable(theme.M3ThemePairs, version);
       File.WriteAllText(path, typstThemeVariable);
 
       // Print status
@@ -29,7 +29,7 @@ internal static class Output
 
   }
 
-  private static string GenerateTypstThemeVariable(in (string, List<ThemePair>) theme, in string version)
+  private static string GenerateTypstThemeVariable(in List<M3ThemePair> themePairs, in string version)
   {
     // Generate theme file contents
     StringBuilder sb = new();
@@ -39,22 +39,22 @@ internal static class Output
     sb.AppendLine();
 
     // Light values
-    GenerateVariable(sb, theme.Item2, "light");
+    GenerateVariable(sb, themePairs, "light");
     sb.AppendLine();
 
     // Dark values
-    GenerateVariable(sb, theme.Item2, "dark");
+    GenerateVariable(sb, themePairs, "dark");
 
     return sb.ToString();
   }
 
-  private static void GenerateVariable(StringBuilder sb, in List<ThemePair> themePairs, in string brightness)
+  private static void GenerateVariable(StringBuilder sb, in List<M3ThemePair> themePairs, in string brightness)
   {
     sb.AppendLine($"#let m3{brightness} = (");
-    foreach (ThemePair themePair in themePairs)
+    foreach (M3ThemePair themePair in themePairs)
     {
-      string name = themePair.Item1; // light-primary
-      string hex = themePair.Item2;
+      string name = themePair.ColorName;
+      string hex = themePair.ColorHex;
 
       string redundantTerm = brightness + '-'; // light-
       string nameWithoutBrightness = name.Replace(redundantTerm, String.Empty); // primary
