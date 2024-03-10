@@ -65,5 +65,4 @@ internal static class Output
   }
 
   private static void PrintGeneratedFilename(in string path) => Console.WriteLine($"  - {path} [ Done ]");
-
 }
