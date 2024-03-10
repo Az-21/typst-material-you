@@ -12,6 +12,7 @@ internal static class Output
     if (!outputExists) { Directory.CreateDirectory(OutputFolder); }
 
     // Write
+    Console.WriteLine("\nGenerating typst theme(s):");
     foreach (var theme in themes)
     {
       // Location
@@ -21,6 +22,9 @@ internal static class Output
       // Content
       string typstThemeVariable = GenerateTypstThemeVariable(theme);
       File.WriteAllText(path, typstThemeVariable);
+
+      // Print status
+      PrintGeneratedFilename(path);
     }
 
   }
@@ -43,4 +47,6 @@ internal static class Output
 
     return sb.ToString();
   }
+
+  private static void PrintGeneratedFilename(in string path) => Console.WriteLine($"  - {path} [ Done ]");
 }
