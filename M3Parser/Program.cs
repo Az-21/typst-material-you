@@ -8,7 +8,7 @@ internal static class Program
     var themes = Parse.Theme.FromKotlinFiles(files);
     Io.Output.WriteThemes(themes);
 
-    Console.Write("Press any key to exit...");
+    Console.Write("\nPress any key to exit...");
     Console.ReadKey();
   }
 }
