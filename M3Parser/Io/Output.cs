@@ -37,7 +37,7 @@ internal static class Output
     sb.AppendLine($"#let {varname} = (");
     foreach (ThemePair themePair in theme.Item2)
     {
-      sb.Append($"""  {themePair.Item1}: rgb("{themePair.Item2}"),""");
+      sb.AppendLine($"""  {themePair.Item1}: rgb("{themePair.Item2}"),""");
     }
     sb.AppendLine(")");
 
