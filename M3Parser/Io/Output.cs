@@ -5,7 +5,7 @@ namespace M3Parser.Io;
 internal static class Output
 {
   private const string OutputFolder = "Output";
-  internal static void WriteTheme(in List<(string, List<ThemePair>)> themes)
+  internal static void WriteThemes(in List<(string, List<ThemePair>)> themes)
   {
     // Ensure output folder exists
     bool outputExists = Path.Exists(OutputFolder);
@@ -35,7 +35,10 @@ internal static class Output
     // Generate theme file contents
     StringBuilder sb = new();
     sb.AppendLine($"#let {varname} = (");
-    foreach (ThemePair themePair in theme.Item2) { sb.Append($"  {themePair.Item1}: rgb({themePair.Item2}),"); }
+    foreach (ThemePair themePair in theme.Item2)
+    {
+      sb.Append($"""  {themePair.Item1}: rgb("{themePair.Item2}"),""");
+    }
     sb.AppendLine(")");
 
     return sb.ToString();
