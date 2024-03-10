@@ -14,6 +14,9 @@ internal static class Input
     // Check to ensure at least one file exists => Terminate otherwise
     EarlyExit(kotlinThemeFiles);
 
+    // Print status
+    PrintDetetedFiles(kotlinThemeFiles);
+
     return kotlinThemeFiles;
   }
 
@@ -29,4 +32,10 @@ internal static class Input
     System.Environment.Exit(0);
   }
 
+  private static void PrintDetetedFiles(in string[] files)
+  {
+    int length = files.Length;
+    Console.WriteLine($"Detected {length} theme file(s):");
+    foreach (string file in files) { Console.WriteLine($"  - {file}"); }
+  }
 }
