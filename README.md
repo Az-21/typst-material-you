@@ -35,8 +35,4 @@
 ```
 
 ## Sample Preview
-### Light M3 Palette
-![Light Palette](https://ucarecdn.com/b2367c79-7209-4193-8e96-1d59974f1b31/typstm3light.jpeg)
-
-### Dark M3 Palette
-![Dark Palette](https://ucarecdn.com/8ad3887f-443e-40de-b6cf-b779f19e8d13/typstm3dark.jpeg)
+![Preview](https://ucarecdn.com/9c80d1e3-bdfa-4dc1-b7e4-12a79629e552/typstm3.jpeg)
