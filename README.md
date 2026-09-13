@@ -1,3 +1,10 @@
+> [!WARNING]
+> This repo is archived. Use <https://m3-everywhere.pages.dev/>.
+>
+> It supports the new **Material You Expressive** spec with 9 variants and customizable contrast level. This website creates a `.zip` artifact directly; zero setup required.
+>
+> <img width="1763" height="942" alt="image" src="https://github.com/user-attachments/assets/45de24ae-5dec-40df-a9e4-df6d7a8a1194" />
+
 # Typst Material You
 🎨 Utility to parse material you theme for typst
 
